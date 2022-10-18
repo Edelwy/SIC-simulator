@@ -1,14 +1,27 @@
 prog  START  0
-      LDX    #1
+      LDX    #0
+      LDB    #0
+      LDA    #in
+
+for   STX    i1
       LDS    #5
+      STA    temp
+      LDX    #1
       JSUB   poly
+cmp   STS    @temp
+      LDA    temp
+      ADD    #3
+      LDX    i1
+      TIX    #3
+      JLT    for            
+
 halt  J      halt
 .-------------------------.
-poly   LDA    #5
+poly  LDA    #5
       SUBR   X,A .A je koeficient
       STA    k
 
-      LDT    in . nalozimo tocko ki jo racunamo
+      LDT    @temp . nalozimo tocko ki jo racunamo
       STX    i  . shranimo indeks
       LDX    #0 . nastavimo indeks na 0
       JSUB   exp
@@ -16,27 +29,30 @@ poly   LDA    #5
       LDA    k
 
       MULR   A,T
-      STT    temp
       ADDR   T,S
       STS    st
 
       TIX    #5
       JLT    poly
-      LDL    #halt
+      LDL    #cmp
       RSUB   
 .-------------------------.
 exp   TIX    i
       JEQ    end
-      LDA    in
+      LDA    @temp
       MULR   A,T
       JLT    exp
 end   RSUB
 .-------------------------.
-in    WORD   2 
 i     RESW   1
+i1    RESW   1
 st    RESW   1
 temp  RESW   1
 k     RESW   1
+
+in    WORD   0
+in2   WORD   2
+in3   WORD   42
 
 . ideja:
 . recimo, da vzamem X za indeks
