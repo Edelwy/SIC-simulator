@@ -40,6 +40,12 @@ MAIN       	START       	0
 		LDA		#10
 		JSUB		PRINT
 
+		LDA		#5
+		LDT		#1
+		JSUB		FACT
+		JSUB		PRINT
+		
+
 HALT 		J		HALT
 
 .---------------------------------------------.
@@ -70,6 +76,34 @@ STACKPOP    	STA         	REG_A
 
 PRINT		TD		OUT
 		WD		OUT
+		RSUB
+
+.---------------------------------------------.
+.----------------- FAKULTETA -----------------.
+
+ROB		COMP		#1
+		JGT		FACT
+		
+		JSUB		STACKPOP
+		LDA		@STACKPTR
+		JSUB		RETURN
+		
+FACT		STL		@STACKPTR
+		JSUB		STACKPUSH
+
+		MULR		A,T
+		SUB		#1
+		STT		@STACKPTR
+		JSUB		STACKPUSH
+		JSUB		ROB
+
+RETURN		JSUB		STACKPOP
+		LDS		@STACKPTR
+
+		JSUB		STACKPOP
+		LDT		@STACKPTR
+		LDL		#0
+		ADDR		S,L
 		RSUB
 
 .---------------------------------------------.
