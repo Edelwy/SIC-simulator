@@ -13,7 +13,7 @@ int main() {
     // TESTIRANJE POMNILNIKA:
     //unsigned char testna_vrednost = 5;
     //A.set_value(testna_vrednost); // LDCH #5 
-    int addr = pomnilnik.get_address(); // ukaz STCH
+    //int addr = pomnilnik.get_address(); // ukaz STCH
     //pomnilnik.set_byte(addr, A.get_value()); // ukaz STCH
 
     //cout << "vrednost registra A: " << A.get_value() << "\n";
@@ -27,17 +27,17 @@ int main() {
     //cout << "vrednost BYTE v pomnilniku: " << (int) pomnilnik.get_byte(addr + 2) << "\n";
     //cout << "vrednost WORD v pomnilniku: " << (unsigned int) pomnilnik.get_word(addr) << "\n";
 
-    pomnilnik.set_byte(addr, 'A');
-    cout << "vrednost BYTE v pomnilniku: " << (unsigned int) pomnilnik.get_byte(addr)<< " na adresi: " << addr << "\n";
+    //pomnilnik.set_byte(addr, 'A');
+    //cout << "vrednost BYTE v pomnilniku: " << (unsigned int) pomnilnik.get_byte(addr)<< " na adresi: " << addr << "\n";
     //pomnilnik.set_word(addr, 286335539); // prevelik int
     //cout << "vrednost WORD v pomnilniku: " << (unsigned int) pomnilnik.get_word(addr) << "\n";
     //cout << "vrednost MP v pomnilniku: " << MP << "\n";
 
     //TESTIRANJE I/O:
-    unsigned char in = std_in.read();
-    OutputDev test_out(4); 
-    std_out.write(in);
-    test_out.write(in);
-    
+    //unsigned char in = std_in.read();
+    //OutputDev test_out(4); 
+    //std_out.write(in);
+    //test_out.write(in);
 
+    cout << "opcode NAME: " << get_name(LDA) << "\n";
 }

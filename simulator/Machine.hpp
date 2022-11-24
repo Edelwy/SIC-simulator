@@ -1,6 +1,6 @@
 #include "Register.hpp"
 #include "Pomnilnik.hpp"
-#include "Device.hpp"
+#include "Opcode.hpp"
 #include <iostream>
 #include <cstdlib>
 #define MAX_ADRESS 32768
