@@ -1,5 +1,6 @@
 #include "Register.hpp"
 #include "Pomnilnik.hpp"
+#include "Device.hpp"
 #include <iostream>
 #include <cstdlib>
 #define MAX_ADRESS 32768
@@ -20,6 +21,9 @@ static Register* registri[9] = {&A,&X,&L,&B,&S,&T,&F,&PC,&SW};
 
 //POMNILNIK:
 static Pomnilnik pomnilnik; 
+static InputDev std_in(0);
+static OutputDev std_out(1);
+static OutputDev std_err(2);
 
 
 
