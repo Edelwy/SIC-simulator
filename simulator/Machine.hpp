@@ -1,29 +1,34 @@
 #include "Register.hpp"
 #include "Pomnilnik.hpp"
 #include "Opcode.hpp"
-#include <iostream>
-#include <cstdlib>
+#include "Device.hpp"
 #define MAX_ADRESS 32768
 using namespace std;
 
 //REGISTRI:  
 //1. PARAMETER: INDEKS, 2. PARAMETER: VREDNOST
-static Register A;
-static Register X;
-static Register L;
-static Register B;
-static Register S;
-static Register T;
-static Register F;
-static Register PC;
-static Register SW;
-static Register* registri[9] = {&A,&X,&L,&B,&S,&T,&F,&PC,&SW};
+extern Register A;
+extern Register X;
+extern Register L;
+extern Register B;
+extern Register S;
+extern Register T;
+extern Register F;
+extern Register PC;
+extern Register SW;
+extern Register* registrs[];
 
 //POMNILNIK:
-static Pomnilnik pomnilnik; 
-static InputDev std_in(0);
-static OutputDev std_out(1);
-static OutputDev std_err(2);
+extern Pomnilnik pomnilnik; 
+extern InputDev std_in;
+extern OutputDev std_out;
+extern OutputDev std_err;
+
+//MNEMONIKI
+extern int no_opcodes;
+extern int no_directives;
+extern string directive_names[];
+extern string opcode_names[];
 
 
 

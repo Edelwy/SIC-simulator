@@ -43,7 +43,9 @@ class OutputDev: public Device {
     public: string file_name;
 
     public: OutputDev(int n) {
-            if(n > MAX_DEV) throw "DEVICE NUMBER OUT OF RANGE";
+            if(n > MAX_DEV) {
+                throw invalid_argument("DEVICE NUMBER OUT OF RANGE");
+            }
             this->dev_no = n;
             this->file_name = "dev_" + to_string(this->dev_no);
         }
@@ -61,3 +63,7 @@ class OutputDev: public Device {
     }
 
 };
+
+static InputDev std_in(0);
+static OutputDev std_out(1);
+static OutputDev std_err(2);

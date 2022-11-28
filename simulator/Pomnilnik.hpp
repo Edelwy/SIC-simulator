@@ -1,13 +1,12 @@
 #include <cstdlib>
-#include <string>
 #define MAX_ADDRESS 32768
-static int MP = 0;
 
 class Pomnilnik {
 
     public:
         int size = MAX_ADDRESS;
         unsigned char mem[MAX_ADDRESS];
+        int MP = 0;
 
     public: int get_address() {
         int indeks = MP; 
@@ -22,7 +21,6 @@ class Pomnilnik {
 
     public: void set_byte(int addr, unsigned char val) {
         mem[addr] = val; 
-        MP = MP + 1;
     }
 
     // METODE ZA WORD OPERACIJE:
@@ -47,7 +45,8 @@ class Pomnilnik {
         mem[addr] = byte_2;
         mem[addr + 1] = byte_3;
         mem[addr + 2] = byte_4;
-        MP = MP + 3;
         return 0;
     }
 };
+
+static Pomnilnik pomnilnik; 
