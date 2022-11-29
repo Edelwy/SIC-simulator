@@ -90,18 +90,18 @@ enum opcodes {
 
 enum directives {
 
-    START =  0,
-    END =    1,
-    ORG =    2,
-    BASE =   3,
-    NOBASE = 4,
-    EQU =    5,
+    START =  -0,
+    END =    -1,
+    ORG =    -2,
+    BASE =   -3,
+    NOBASE = -4,
+    EQU =    -5,
 
 //STORAGE:
-    RESB = 11,
-    RESW = 12,
-    BYTE = 14,
-    WORD = 15 };
+    RESB = -6,
+    RESW = -7,
+    BYTE = -8,
+    WORD = -9 };
 
 static string opcode_names[] = {
     "LDA", "LDX", "LDL", "STA", "STX", "STL", "ADD", "SUB",
@@ -122,29 +122,38 @@ static int no_directives = sizeof(directive_names) / sizeof(string);
 
 
 // ------------ NAPAKE: ---------------- //
-static bool not_implemented(string mnemonic) {
+static int not_implemented(string mnemonic) {
 
     for (int i = 0; i <= no_opcodes; i++) 
-        if(opcode_names[i] == mnemonic) return true;
+        if(opcode_names[i] == mnemonic) return 0;
 
     for (int i = 0; i <= no_directives; i++) 
-        if(directive_names[i] == mnemonic) return true;
+        if(directive_names[i] == mnemonic) return 1;
 
     cout << "MNEMONIC NOT IMPLEMENTED\n";
-    return false;
+    return -1;
 }
 
-static string get_name(int code) {
-    if((code % 4) != 0) return ""; 
+static string get_opcode_name(int code) {
+    if((code / 4) > no_opcodes) return "";
     return opcode_names[code >> 2];
 }
 
-static bool invalid_code(int code) {
 
-    string mnemonic = get_name(code);
-    // cout << mnemonic << "\n"; //DEBUG!
-    if(mnemonic != "") return true;
+static string get_directive_name(int code) {
+    if(code > 0 || code < -9) return "";
+    return directive_names[-code];
+}
+
+static int valid_code(int code) {
+
+    string mnemonic = get_opcode_name(code);
+    if(mnemonic != "") return 0;
+
+    mnemonic = get_directive_name(code);
+    if(mnemonic != "") return 1;
+
     cout << "OPCODE IS INVALID\n";
-    return false;
+    return -1;
 }
 

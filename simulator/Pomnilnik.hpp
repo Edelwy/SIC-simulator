@@ -26,8 +26,8 @@ class Pomnilnik {
     // METODE ZA WORD OPERACIJE:
     public: unsigned int get_word(int addr) {
         unsigned int val = 0;
-        unsigned int byte_2 = mem[addr]<<16;
-        unsigned int byte_3 = mem[addr + 1]<<8;
+        unsigned int byte_2 = mem[addr] << 16;
+        unsigned int byte_3 = mem[addr + 1] << 8;
         unsigned int byte_4 = mem[addr + 2];
         
         val = byte_2 + byte_3 + byte_4;
@@ -35,10 +35,10 @@ class Pomnilnik {
     }
 
     public: int set_word(int addr, unsigned int val) {
-        unsigned char byte_4 =  val & 0x000000ff;
-        unsigned char byte_3 = (val & 0x0000ff00) >> 8;
-        unsigned char byte_2 = (val & 0x00ff0000) >> 16;
-        unsigned char byte_1 = (val & 0xff000000) >> 24;
+        unsigned char byte_4 =  val & 0x000000FF;
+        unsigned char byte_3 = (val & 0x0000FF00) >> 8;
+        unsigned char byte_2 = (val & 0x00FF0000) >> 16;
+        unsigned char byte_1 = (val & 0xFF000000) >> 24;
 
         if(byte_1 != 0) return 1;
         

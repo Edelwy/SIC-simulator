@@ -1,13 +1,16 @@
 # SIMULATOR: SIC/XE
+
+## COMPILE:
+-	makefile with commands: **make**, **make clean**
+
 ## REGISTERS:
 - there are **9 registers** 
 - `get_value`: returns the value 
 - `set_value`: sets the value 
-- **indexing**: the registers are labeled with indexes from 0 to 8.
-	- `registrs[i]` gives you the register at index `i`
-	- note: the elements of the `registrs` array are pointers to said objects,
-it is important that we use references to the registers we need. 
-***example**: `Register &tmp = *registrs[i]`*
+- **indexing**: the registers are labeled with indexes from 0 to 6 and then 8 and 9.
+	- `get_reg` gives you the register at index `i`
+	- note: it is important that we use references to the registers we need. 
+***example**: `Register &tmp = get_reg(i)`*
 
 ## RAM:
 - an array of **bytes** 
@@ -27,3 +30,12 @@ it is important that we use references to the registers we need.
 - **write only** device `OutputDev`
 -  inicialization with a number of the device we want
 	***example**: `InputDev  std_in(n);`*
+
+## OPCODE:
+- opcode of all commands is defined in this simulator
+- not all of the commands are implemented **!**
+- the ones that are not are marked with `// X`
+- method `not_implemented` and method `invalid_code` returns:
+	- 0: command for processor
+	- 1: command for assembler 
+	- -1: command does not exist

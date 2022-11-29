@@ -1,8 +1,8 @@
+#include "Device.hpp"
 #include "Register.hpp"
 #include "Pomnilnik.hpp"
 #include "Opcode.hpp"
-#include "Device.hpp"
-#define MAX_ADRESS 32768
+#define MAX_ADRESS 1048576
 using namespace std;
 
 //REGISTRI:  
@@ -16,7 +16,7 @@ extern Register T;
 extern Register F;
 extern Register PC;
 extern Register SW;
-extern Register* registrs[];
+extern Register& get_reg(int i);
 
 //POMNILNIK:
 extern Pomnilnik pomnilnik; 
@@ -24,11 +24,13 @@ extern InputDev std_in;
 extern OutputDev std_out;
 extern OutputDev std_err;
 
-//MNEMONIKI
+//MNEMONIKI:
 extern int no_opcodes;
 extern int no_directives;
-extern string directive_names[];
-extern string opcode_names[];
+extern bool not_implemented();
+extern bool invalid_code();
+extern string get_opcode_name();
+extern string get_directive_name();
 
 
 

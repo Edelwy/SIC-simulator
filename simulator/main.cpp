@@ -1,19 +1,18 @@
-#include "Machine.hpp"
+#include "Executer.hpp"
 #include <iostream>
 #include <cstdio>
 
 int main() {
 
     // TESTIRANJE REGISTROV:
-
-    //Register &tmp = *registrs[1]; // REFERENCE NINA: HOCEMO ISTEGA
+    //Register &tmp = index_get_reg(1); // REFERENCE NINA: HOCEMO ISTEGA
     //cout << "vrednost registra tmp: " << tmp.get_value() << "\n"; tmp.set_value(20);
     //cout << "vrednost registra X: " << X.get_value() << "\n";
 
     // TESTIRANJE POMNILNIKA:
     //unsigned char testna_vrednost = 5;
     //A.set_value(testna_vrednost); // LDCH #5 
-    //int addr = pomnilnik.get_address(); // ukaz STCH
+    //unsigned char addr = pomnilnik.get_address(); // ukaz STCH
     //pomnilnik.set_byte(addr, A.get_value()); // ukaz STCH
 
     //cout << "vrednost registra A: " << A.get_value() << "\n";
@@ -42,13 +41,21 @@ int main() {
     //test_out.write('3');
 
    
-
+    //VALIDATING CODE:
     //cout << "opcode NAME: " << get_name(LDA) << "\n";
-    opcodes opcode = STA;
-    not_implemented("TEST");
-    not_implemented("LDA");
+    //opcodes opcode = TIO;
+    //not_implemented("TEST");
+    //not_implemented("LDA");
 
-    invalid_code(STF);
-    invalid_code(0x07);
+    //valid_code(STF);
+    //valid_code(TIO);
+    //valid_code(0x15);
+    //cout << get_directive_name(-6);
+
+    //cout << get_opcode(0x13);
+    unsigned char byte = 0x12;
+    cout << get_r1(byte) << "\n";
+    cout << get_r2(byte) << "\n";
+
     return 0;
 }
