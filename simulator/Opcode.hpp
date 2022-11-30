@@ -71,9 +71,9 @@ enum opcodes {
     FLOAT = 0xC0, // X
     FIX =   0xC4, // X
     NORM =  0xC8, // X
-    SIO =   0xF0,
-    HIO =   0xF4,
-    TIO =   0xF8,
+    SIO =   0xF0, // X
+    HIO =   0xF4, // X
+    TIO =   0xF8, // X
 
 //UKAZI TIPA 2:
     ADDR =  0x90,
@@ -111,7 +111,7 @@ static string opcode_names[] = {
     "STF", "STT", "", "", "ADDR", "SUBR", "MULR", "DIVR",
     "COMPR", "SHIFTL", "SHIFTR", "RMO", "", "CLEAR", "TIXR", "",
     "", "", "", "", "", "", "RD", "WD",
-    "TD", "", "STSW", "", "SIO", "HIO", "TIO", "" };
+    "TD", "", "STSW", "", "", "", "", "" };
 
 static string directive_names[] = {
     "START", "END", "ORG", "BASE", "NOBASE", "EQU",
@@ -134,26 +134,19 @@ static int not_implemented(string mnemonic) {
     return -1;
 }
 
-static string get_opcode_name(int code) {
+static string opcode_name(int code) {
     if((code / 4) > no_opcodes) return "";
     return opcode_names[code >> 2];
 }
 
 
-static string get_directive_name(int code) {
+static string directive_name(int code) {
     if(code > 0 || code < -9) return "";
     return directive_names[-code];
 }
 
-static int valid_code(int code) {
-
-    string mnemonic = get_opcode_name(code);
-    if(mnemonic != "") return 0;
-
-    mnemonic = get_directive_name(code);
-    if(mnemonic != "") return 1;
-
-    cout << "OPCODE IS INVALID\n";
-    return -1;
+static void valid_code(int opcode) {
+    if(opcode == 0xCC || opcode == 0x8C || opcode == 0xBC || opcode == 0xE4 || opcode < 0 || opcode > 0xF8)
+    throw invalid_argument("OPCODE IS INVALID\n");
 }
 

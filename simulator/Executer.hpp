@@ -6,7 +6,7 @@ using namespace std;
 // **************************** FETCH PHASE: *********************************//
 
 static int fetch() {
-    unsigned char addr = PC.get_value();
+    int addr = PC.get_value();
     unsigned char instruction_byte = pomnilnik.get_byte(addr);
     PC.set_value(addr + 1);
     return instruction_byte;
@@ -21,25 +21,25 @@ static int get_opcode(unsigned char byte) {
 
 static int get_ni(unsigned char byte) {
     int ni = byte & 0x03;
-    cout << "NI: " << ni << "\n";
+    //cout << "NI: " << ni << "\n";
     return ni;
 }
 
 static int get_x(unsigned char byte) {
     int x = (byte & 0x80) >> 7;
-    cout << "X: " << x << "\n";
+    //cout << "X: " << x << "\n";
     return x;
 }
 
 static int get_bp(unsigned char byte) {
     int bp = (byte & 0x60) >> 5;
-    cout << "BP: " << bp << "\n";
+    //cout << "BP: " << bp << "\n";
     return bp;
 }
 
 static int get_e(unsigned char byte) {
     int e = (byte & 0x10) >> 4;
-    cout << "E: " << e << "\n";
+    //cout << "E: " << e << "\n";
     return e;
 }
 
@@ -82,20 +82,17 @@ int naslavljanje_F3(int offset, int bp) {
 }
 // **************************** EXECUTE PHASE: ********************************//
 
-extern void execute_F1(int opcode);
-extern void execute_F2(int opcode, int r1, int r2);
-extern void execute_FSIC(int opcode, int x, int UN);
-extern void execute_F3(int opcode, int ni, int x, int UN);
-extern void execute_F4(int opcode, int ni, int x, int UN);
+extern bool execute_F1(int opcode);
+extern bool execute_F2(int opcode, int r1, int r2);
+extern bool execute_FSIC34(int opcode, int UN);
 
 static int execute() {
 
     unsigned char byte1 = fetch();
     int opcode = get_opcode(byte1);
     int ni = get_ni(byte1);
-    
+
     valid_code(opcode);
-    not_implemented(get_opcode_name(opcode));
 
     if(opcode >= FLOAT && opcode <= TIO) {
         execute_F1(opcode);
@@ -113,7 +110,9 @@ static int execute() {
         unsigned char byte3 = fetch();
         int x = get_x(byte2);
         int UN = get_addr_FSIC(byte2, byte3);
-        execute_FSIC(opcode, x, UN);
+        if(x == 1) UN = UN + X.get_value();
+
+        execute_FSIC34(opcode, ni, UN);
         return 0; 
 
     } else {
@@ -126,13 +125,17 @@ static int execute() {
         if(bp == 0 && e == 1) {
             unsigned char byte4 = fetch();
             int UN = get_addr_F4(byte2, byte3, byte4);
-            execute_F4(opcode, ni, x, UN);
+            if(x == 1) UN = UN + X.get_value();
+
+            execute_FSIC34(opcode, ni, UN);
             return 4;
 
         } else {
             int offset = get_offset_F3(byte2, byte3);
             int UN = naslavljanje_F3(offset, bp);
-            execute_F3(opcode, ni, x, UN);
+            if(x == 1) UN = UN + X.get_value();
+
+            execute_FSIC34(opcode, ni, UN);
             return 3;
         }
     }

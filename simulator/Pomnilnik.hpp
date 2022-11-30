@@ -1,5 +1,5 @@
 #include <cstdlib>
-#define MAX_ADDRESS 32768
+#define MAX_ADDRESS 1048576
 
 class Pomnilnik {
 

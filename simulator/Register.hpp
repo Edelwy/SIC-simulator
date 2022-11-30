@@ -1,8 +1,8 @@
 class Register {
     
-    private: unsigned char value = 0;
-    public: unsigned char get_value() { return value; }
-    public: void set_value(unsigned char v) { this->value = v; }
+    private: int value = 0;
+    public: int get_value() { return value; }
+    public: void set_value(int v) { this->value = v; }
 
 };
 

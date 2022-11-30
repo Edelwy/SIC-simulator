@@ -6,9 +6,8 @@ using namespace std;
 #define MAX_DEV 255
 
 class Device {
-    public: 
-        int dev_no;
-        bool test() { return true; }
+
+    public: int dev_no;
 };
 
 class InputDev: public Device {
@@ -16,7 +15,6 @@ class InputDev: public Device {
     public: string file_name;
 
     public: InputDev(int n) {
-            if(n > MAX_DEV) throw "DEVICE NUMBER OUT OF RANGE";
             this->dev_no = n;
             this->file_name = "dev_" + to_string(this->dev_no);
         }
@@ -43,9 +41,6 @@ class OutputDev: public Device {
     public: string file_name;
 
     public: OutputDev(int n) {
-            if(n > MAX_DEV) {
-                throw invalid_argument("DEVICE NUMBER OUT OF RANGE");
-            }
             this->dev_no = n;
             this->file_name = "dev_" + to_string(this->dev_no);
         }

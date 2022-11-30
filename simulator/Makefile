@@ -30,7 +30,6 @@ permissive :
 	@echo "Compiling with 'permissive' enabled..."
 	${CC} -o ${TARGET} ${EXECUTABLES} -fpermissive ${CFLAGS} ${LIBS} 
 
-
 # ************ COMPILING ******************************
 Machine.hpp.gch : Machine.hpp
 	${CC} -c  Machine.hpp ${CFLAGS} ${LIBS} 
