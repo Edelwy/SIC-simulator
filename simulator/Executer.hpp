@@ -92,6 +92,7 @@ static int execute() {
     int opcode = get_opcode(byte1);
     int ni = get_ni(byte1);
 
+    cout << "OPCODE: " << opcode_name(opcode) << "\n";
     valid_code(opcode);
 
     if(opcode >= FLOAT && opcode <= TIO) {

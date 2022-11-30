@@ -1,8 +1,16 @@
-#include "Executer.hpp"
+#include "Runner.hpp"
 #include <iostream>
 #include <cstdio>
 
 extern int execute();
+
+bool test() {
+    static int i = 0;
+    cout << "Testing\n";
+    i++;
+    if(i == 5) return true;
+    return false;
+}
 
 int main() {
 
@@ -57,7 +65,7 @@ int main() {
     
     //EXECUTING TEST:
     // cout << get_opcode_name(opcode) << "\nBIT NI: " << ni << "\nUN: " << UN << "\n\n";
-    /*PC.set_value(2);
+    PC.set_value(2);
     X.set_value(2);
     A.set_value(4);
 
@@ -119,40 +127,23 @@ int main() {
     pomnilnik.set_byte(19, ukaz72);
     pomnilnik.set_byte(20, ukaz73);
 
-    // TIP3: napačno naslavljanje
-    //unsigned char ukaz81 = LDA + 1;
-    //unsigned char ukaz82 = 0x64;
-    //unsigned char ukaz83 = 0x01;
-    //pomnilnik.set_byte(21, ukaz81);
-    //pomnilnik.set_byte(22, ukaz82);
-    //pomnilnik.set_byte(23, ukaz83);
-    
-    execute();
-    
+    // HALT J HALT: KONEC PROGRAMA PC = 20 JUMP NA PC = 20
+    unsigned char ukaz81 = J + 1;
+    unsigned char ukaz82 = 0;
+    unsigned char ukaz83 = 0x15;
+    pomnilnik.set_byte(21, ukaz81);
+    pomnilnik.set_byte(22, ukaz82);
+    pomnilnik.set_byte(23, ukaz83);
+
+
     L.set_value(5);
     S.set_value(2);
-    execute();
-    cout << "F2 ADDR: " << S.get_value() << "\n\n";
-
     pomnilnik.set_word(240, 500);
-    //cout << "pomnilnik: " << pomnilnik.get_word(15) << " ";
-    execute();
-    cout << "FSIC NEPOSREDNO ENOSTAVNO + INDEKSNO(2) NASLAVLJANJE: ADD -> " << A.get_value() << "\n\n";
-
-    execute();
-    cout << "F4 NEPOSREDNO TAKOJŠNJE NASLAVLJANJE: STA -> " << pomnilnik.get_word(262145) << "\n\n";
-
     pomnilnik.set_word(1027, 20);
-    execute();
-    cout << "F3 NEPOSREDNO ENOSTAVNO + INDEKSNO(2) NASLAVLJANJE: LDL -> " << L.get_value() << "\n\n";
-
     pomnilnik.set_word(1037, 1027);
-    execute();
-    cout << "F3 BAZNO POSREDNO + INDEKSNO(2) NASLAVLJANJE: LDS -> " << S.get_value() << "\n\n";
-
     pomnilnik.set_word(1046, 9);
-    execute();
-    cout << "F3 PC RELATIVNO ENOSTAVNO NASLAVLJANJE: LDT -> " << T.get_value() << "\n";*/
+
+    start();
     
     return 0;
 }

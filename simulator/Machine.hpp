@@ -2,7 +2,6 @@
 #include "Register.hpp"
 #include "Pomnilnik.hpp"
 #include "Opcode.hpp"
-#define MAX_ADRESS 1048576
 using namespace std;
 
 //REGISTRI:  

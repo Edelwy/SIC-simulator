@@ -16,11 +16,16 @@ bool execute_F1(int opcode) {
         case HIO:       {c.HIO();    break; }
         case TIO:       {c.TIO();    break; }
         default: return false;
-    }   return true;
+    }   
+    cout << "\n";
+    return true;
 }
 
 bool execute_F2(int opcode, int r1, int r2) {
     F2 c(r1, r2);
+    cout << "R1: " << reg(r1).get_value() << "\n";
+    cout << "R2: " << reg(r2).get_value() << "\n\n";
+
     switch(opcode) {
         case ADDR:      {c.ADDR();   break; }
         case SUBR:      {c.SUBR();   break; }
@@ -42,7 +47,7 @@ bool execute_FSIC34(int opcode, int ni, int UN) {
     if(ni == 0x01) operand = UN;
     if(ni == 0x02) operand = pomnilnik.get_word(operand);
     cout << "UN: " << UN << "\n";
-    cout << "operand: " << operand << "\n";
+    cout << "operand: " << operand << "\n\n";
 
     FSIC34 c(operand);
     switch(opcode) {
