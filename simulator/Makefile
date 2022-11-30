@@ -12,6 +12,7 @@ OBJECTS = \
 	Opcode.hpp.gch \
 	Execute.hpp.gch \
 	Executer.hpp.gch \
+	Command.hpp.gch \
 	main.o
 
 EXECUTABLES = \
@@ -27,7 +28,7 @@ clean :
 
 permissive :
 	@echo "Compiling with 'permissive' enabled..."
-	${CC} -o ${TARGET} ${OBJECTS} -fpermissive ${CFLAGS} ${LIBS} 
+	${CC} -o ${TARGET} ${EXECUTABLES} -fpermissive ${CFLAGS} ${LIBS} 
 
 
 # ************ COMPILING ******************************
@@ -51,6 +52,9 @@ Execute.hpp.gch : Execute.hpp
 
 Executer.hpp.gch : Executer.hpp
 	${CC} -c  Executer.hpp ${CFLAGS} ${LIBS}
+
+Command.hpp.gch : Command.hpp
+	${CC} -c  Command.hpp ${CFLAGS} ${LIBS}
 
 main.o : main.cpp
 	${CC} -c  main.cpp ${CFLAGS} ${LIBS}

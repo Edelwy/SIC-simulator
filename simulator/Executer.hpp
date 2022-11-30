@@ -1,12 +1,141 @@
 #include "Execute.hpp"
+#include <iostream>
+#include <string>
+using namespace std;
 
-//FETCH AND EXECUTE:
-extern int fetch();
-extern int get_opcode(unsigned char byte);
-extern int get_ni(unsigned char byte);
-extern void execute();
+// **************************** FETCH PHASE: *********************************//
 
-extern void execute_FSIC(int opcode);
+static int fetch() {
+    unsigned char addr = PC.get_value();
+    unsigned char instruction_byte = pomnilnik.get_byte(addr);
+    PC.set_value(addr + 1);
+    return instruction_byte;
+}
+
+// ******************************* GET BITS: *********************************//
+
+static int get_opcode(unsigned char byte) {
+    int opcode = byte & 0xFC;
+    return opcode;
+}
+
+static int get_ni(unsigned char byte) {
+    int ni = byte & 0x03;
+    cout << "NI: " << ni << "\n";
+    return ni;
+}
+
+static int get_x(unsigned char byte) {
+    int x = (byte & 0x80) >> 7;
+    cout << "X: " << x << "\n";
+    return x;
+}
+
+static int get_bp(unsigned char byte) {
+    int bp = (byte & 0x60) >> 5;
+    cout << "BP: " << bp << "\n";
+    return bp;
+}
+
+static int get_e(unsigned char byte) {
+    int e = (byte & 0x10) >> 4;
+    cout << "E: " << e << "\n";
+    return e;
+}
+
+static int get_r1(unsigned char byte) {
+    int r1 = (byte & 0x000000F0) >> 4;
+    return r1;
+}
+
+static int get_r2(unsigned char byte) {
+    int r2 = byte & 0x0000000F;
+    return r2;
+}
+
+static int get_offset_F3(unsigned byte2, unsigned byte3) {
+    int val = (byte2 & 0x0F) << 8;
+    val = val + byte3;
+    return val;
+}
+
+static int get_addr_F4(unsigned byte2, unsigned byte3, unsigned byte4) {
+    int val = (byte2 & 0x0F) << 16;
+    val = val + (byte3 << 8) + byte4;
+    return val;
+}
+
+static int get_addr_FSIC(unsigned byte2, unsigned byte3) {
+    int val = (byte2 & 0x7F) << 8;
+    val = val + byte3;
+    return val;
+}
+
+// **************************** NASLAVLJANJE: *********************************//
+
+int naslavljanje_F3(int offset, int bp) {
+    int UN = offset;
+    if(bp == 1) UN = PC.get_value() + offset;
+    if(bp == 2) UN = B.get_value() + offset;
+    if(bp == 3) throw invalid_argument("BITA BP(11) UNDEFINED!");
+    return UN;
+}
+// **************************** EXECUTE PHASE: ********************************//
+
 extern void execute_F1(int opcode);
-extern void execute_F2(int opcode);
-extern void execute_F34(int opcode, int ni);
+extern void execute_F2(int opcode, int r1, int r2);
+extern void execute_FSIC(int opcode, int x, int UN);
+extern void execute_F3(int opcode, int ni, int x, int UN);
+extern void execute_F4(int opcode, int ni, int x, int UN);
+
+static int execute() {
+
+    unsigned char byte1 = fetch();
+    int opcode = get_opcode(byte1);
+    int ni = get_ni(byte1);
+    
+    valid_code(opcode);
+    not_implemented(get_opcode_name(opcode));
+
+    if(opcode >= FLOAT && opcode <= TIO) {
+        execute_F1(opcode);
+        return 1;
+
+    } else if(opcode >= ADDR && opcode <= TIXR) {
+        unsigned char byte2 = fetch();
+        int r1 = get_r1(byte2);
+        int r2 = get_r2(byte2);
+        execute_F2(opcode, r1, r2);
+        return 2;
+
+    } else if(ni == 0) { //SIC 
+        unsigned char byte2 = fetch();
+        unsigned char byte3 = fetch();
+        int x = get_x(byte2);
+        int UN = get_addr_FSIC(byte2, byte3);
+        execute_FSIC(opcode, x, UN);
+        return 0; 
+
+    } else {
+        unsigned char byte2 = fetch();
+        unsigned char byte3 = fetch();
+        int x = get_x(byte2);
+        int bp = get_bp(byte2);
+        int e = get_e(byte2);
+
+        if(bp == 0 && e == 1) {
+            unsigned char byte4 = fetch();
+            int UN = get_addr_F4(byte2, byte3, byte4);
+            execute_F4(opcode, ni, x, UN);
+            return 4;
+
+        } else {
+            int offset = get_offset_F3(byte2, byte3);
+            int UN = naslavljanje_F3(offset, bp);
+            execute_F3(opcode, ni, x, UN);
+            return 3;
+        }
+    }
+}
+
+

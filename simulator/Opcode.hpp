@@ -117,8 +117,8 @@ static string directive_names[] = {
     "START", "END", "ORG", "BASE", "NOBASE", "EQU",
     "RESB", "RESW", "BYTE", "WORD" };
 
-static int no_opcodes = sizeof(opcode_names) / sizeof(string); 
-static int no_directives = sizeof(directive_names) / sizeof(string);
+int no_opcodes = sizeof(opcode_names) / sizeof(string); 
+int no_directives = sizeof(directive_names) / sizeof(string);
 
 
 // ------------ NAPAKE: ---------------- //

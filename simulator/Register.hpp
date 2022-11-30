@@ -1,7 +1,7 @@
 class Register {
     
     private: unsigned char value = 0;
-    public: int get_value() { return value; }
+    public: unsigned char get_value() { return value; }
     public: void set_value(unsigned char v) { this->value = v; }
 
 };
@@ -16,7 +16,7 @@ static Register F;
 static Register PC;
 static Register SW;
 
-static Register& get_reg(int i) {
+static Register& reg(int i) {
     switch(i) { 
     case 1: return X;
     case 2: return L;
@@ -24,7 +24,7 @@ static Register& get_reg(int i) {
     case 4: return S;
     case 5: return T;
     case 6: return F;
-    case 8: return PC;
-    case 9: return SW; 
+    case 7: return PC;
+    case 8: return SW; 
     default: return A; }
 }

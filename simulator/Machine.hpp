@@ -16,7 +16,7 @@ extern Register T;
 extern Register F;
 extern Register PC;
 extern Register SW;
-extern Register& get_reg(int i);
+extern Register& reg(int i);
 
 //POMNILNIK:
 extern Pomnilnik pomnilnik; 
@@ -25,8 +25,6 @@ extern OutputDev std_out;
 extern OutputDev std_err;
 
 //MNEMONIKI:
-extern int no_opcodes;
-extern int no_directives;
 extern bool not_implemented();
 extern bool invalid_code();
 extern string get_opcode_name();
