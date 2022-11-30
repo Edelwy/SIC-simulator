@@ -2,7 +2,8 @@
 #include <iostream>
 #include <cstdio>
 
-extern int execute();
+extern void start();
+extern void stop();
 
 bool test() {
     static int i = 0;

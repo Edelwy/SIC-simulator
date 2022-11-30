@@ -11,6 +11,7 @@ class CPU {
     public:
         int period;      // PERIOD IN MILISECONDS
         int repeat;      // LOOP REPEAT COUNT
+        bool running = false;
 
         CPU(int period, int repeat) {
             this->period = period;
@@ -27,10 +28,9 @@ class CPU {
         return 1000 / period * repeat;
     }
 
-    public: void run(bool (*task)(), int delay) {
-        bool stop = false;
-        while(!stop) {
-            stop = task();
+    public: void run(void (*task)(), int delay) {
+        while(running) {
+            task();
             this_thread::sleep_for(chrono::milliseconds(period)); // ZAMIK
         }
     };

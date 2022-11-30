@@ -4,7 +4,7 @@ using namespace std;
 
 extern CPU cpu;
 
-bool timer_tick() {
+void timer_tick() {
     for(int i = 0; i < cpu.repeat; i++) {
 
         int old_PC = PC.get_value();
@@ -12,21 +12,22 @@ bool timer_tick() {
         int new_PC = PC.get_value();
 
     //  PRIDEMO DO KONCA PROGRAMA:
-        if(old_PC == new_PC) return true;
-    }
-    return false;
+        if(old_PC == new_PC) cpu.running = false;
+
+    //  ROCNO USTAVIMO PROGRAM:
+    } 
 }
 
 static void stop() {
-    // IMPLEMENT
+    cpu.running = false;
 }
 
 static void start() {
+    cpu.running = true;
     cpu.run(&timer_tick, 0);
 }
 
 static bool is_running() {
-    // IMPLEMENT
-    return false;
+    return cpu.running;
 }
 
