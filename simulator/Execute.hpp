@@ -41,11 +41,34 @@ bool execute_F2(int opcode, int r1, int r2) {
     }   return true;
 }
 
-bool execute_FSIC34(int opcode, int ni, int UN) {
+bool byte_operation(int opcode) {
+    if(opcode == LDCH || opcode == STCH || opcode == TD || opcode == WD || opcode == RD) return true;
+    return false;
+}
 
-    int operand = pomnilnik.get_word(UN); //SIC in NI: 11
-    if(ni == 0x01) operand = UN;
-    if(ni == 0x02) operand = pomnilnik.get_word(operand);
+bool execute_FSIC34(int opcode, int ni, int UN) {
+    int operand;
+
+    switch(ni) {
+        case 0x01: {
+            operand = UN;
+            break;
+        }
+        
+        case 0x02: {
+            operand = pomnilnik.get_word(UN);
+            if(byte_operation(opcode)) operand = pomnilnik.get_byte(operand); 
+            else operand = pomnilnik.get_word(operand); 
+            break;
+        }
+
+        default: {
+            if(byte_operation(opcode)) operand = pomnilnik.get_byte(UN); 
+            else operand = pomnilnik.get_word(UN); 
+            break; 
+        } 
+    }
+
     cout << "UN: " << UN << "\n";
     cout << "operand: " << operand << "\n\n";
 

@@ -1,4 +1,4 @@
-#include "Runner.hpp"
+#include "Loader.hpp"
 #include <iostream>
 #include <cstdio>
 
@@ -66,7 +66,7 @@ int main() {
     
     //EXECUTING TEST:
     // cout << get_opcode_name(opcode) << "\nBIT NI: " << ni << "\nUN: " << UN << "\n\n";
-    PC.set_value(2);
+    /*PC.set_value(2);
     X.set_value(2);
     A.set_value(4);
 
@@ -142,7 +142,17 @@ int main() {
     pomnilnik.set_word(240, 500);
     pomnilnik.set_word(1027, 20);
     pomnilnik.set_word(1037, 1027);
-    pomnilnik.set_word(1046, 9);
+    pomnilnik.set_word(1046, 9);*/
+
+    load_obj();
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(107) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(110) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(113) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(116) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(119) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(122) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(125) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(128) << "\n";
 
     start();
     

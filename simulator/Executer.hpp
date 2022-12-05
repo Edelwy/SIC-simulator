@@ -75,7 +75,7 @@ static int get_addr_FSIC(unsigned byte2, unsigned byte3) {
 
 int naslavljanje_F3(int offset, int bp) {
     int UN = offset;
-    if(bp == 1) UN = PC.get_value() + offset;
+    if(bp == 1) { if(offset >= 2048) offset = offset - 4096; UN = PC.get_value() + offset; } 
     if(bp == 2) UN = B.get_value() + offset;
     if(bp == 3) throw invalid_argument("BITA BP(11) UNDEFINED!");
     return UN;
@@ -95,7 +95,7 @@ static int execute() {
     cout << "OPCODE: " << opcode_name(opcode) << "\n";
     valid_code(opcode);
 
-    if(opcode >= FLOAT && opcode <= TIO) {
+    if((opcode >= FLOAT && opcode <= NORM) || (opcode >= SIO && opcode <= HIO)) {
         execute_F1(opcode);
         return 1;
 

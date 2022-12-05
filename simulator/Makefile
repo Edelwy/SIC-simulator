@@ -15,6 +15,8 @@ OBJECTS = \
 	Command.hpp.gch \
 	Runner.hpp.gch \
 	CPU.hpp.gch \
+	Loader.hpp.gch \
+	Reader.hpp.gch \
 	main.o
 
 EXECUTABLES = \
@@ -62,6 +64,12 @@ Runner.hpp.gch : Runner.hpp
 
 CPU.hpp.gch : CPU.hpp
 	${CC} -c  CPU.hpp ${CFLAGS} ${LIBS}
+
+Loader.hpp.gch : Loader.hpp
+	${CC} -c  Loader.hpp ${CFLAGS} ${LIBS}
+
+Reader.hpp.gch : Reader.hpp
+	${CC} -c  Reader.hpp ${CFLAGS} ${LIBS}
 
 main.o : main.cpp
 	${CC} -c  main.cpp ${CFLAGS} ${LIBS}

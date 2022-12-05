@@ -1,4 +1,6 @@
 #include <cstdlib>
+#include <iostream>
+using namespace std;
 #define MAX_ADDRESS 1048576
 
 class Pomnilnik {
@@ -10,6 +12,7 @@ class Pomnilnik {
 
     public: int get_address() {
         int indeks = MP; 
+        MP++;
         return indeks;
     }
 
