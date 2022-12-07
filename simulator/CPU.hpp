@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+static void step(int i, int k);
 
 #define MAX_SPEED 100000000 
 using namespace std;
@@ -28,10 +29,14 @@ class CPU {
         return 1000 / period * repeat;
     }
 
-    public: void run(void (*task)(), int delay) {
+    public: void run(void (*task)(), int delay, int k) {
+        int indeks = 1;
+        
         while(running) {
             task();
+            step(indeks, k);
             this_thread::sleep_for(chrono::milliseconds(period)); // ZAMIK
+            indeks++;
         }
     };
 };

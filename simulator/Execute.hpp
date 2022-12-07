@@ -46,8 +46,32 @@ bool byte_operation(int opcode) {
     return false;
 }
 
+bool immediate_possible(int opcode) {
+    if( opcode == STA   ||	
+        opcode == STX   ||	
+        opcode == STL   ||	
+        opcode == STCH  ||	
+        opcode == STB   ||	
+        opcode == STS   ||	
+        opcode == STF   ||	
+        opcode == STT   ||	
+        opcode == STSW  ||	
+        opcode == JEQ   ||	
+        opcode == JGT   ||	
+        opcode == JLT   ||	
+        opcode == J     ||		
+        opcode == RSUB  ||	
+        opcode == JSUB ) 
+        return false;
+    else return true;
+}
+
+
 bool execute_FSIC34(int opcode, int ni, int UN) {
+
     int operand;
+    if((!immediate_possible(opcode)) && (ni != 0x02)) ni = 0x01;
+    if((!immediate_possible(opcode)) && (ni == 0x02)) ni = 0x00;
 
     switch(ni) {
         case 0x01: {

@@ -194,7 +194,7 @@ class FSIC34: public Command {
 
     public: void LDCH() {
         unsigned char byte = (operand & 0x000000FF);
-        T.set_value(byte);
+        A.set_value(byte);
     }
 
     public: void ADD() {
@@ -250,7 +250,7 @@ class FSIC34: public Command {
         } else {
             OutputDev dev_out(operand);
             int val = A.get_value();
-            std_out.write(val);
+            dev_out.write(val);
         }
     }
 

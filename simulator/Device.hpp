@@ -26,7 +26,7 @@ class InputDev: public Device {
         if(this->dev_no == 0) {
             cin >> input;
         } else {
-            ifstream file(file_name);
+            ifstream file(file_name, ios::app);
             input = file.get();
             file.close();
         }
@@ -46,12 +46,12 @@ class OutputDev: public Device {
         }
     
     public: void write(unsigned char output) { 
-
+        
         if(this->dev_no == 1) {
             cout << output;
         } else {
             if(this->dev_no == 2) file_name = "error_log";
-            ofstream file(file_name);
+            ofstream file(file_name, ios::app);
             file << output;
             file.close();
         }

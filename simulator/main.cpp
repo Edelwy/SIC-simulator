@@ -48,7 +48,8 @@ int main() {
     //unsigned char in = std_in.read();
     //OutputDev test_out(4); 
     //std_out.write(in);
-    //test_out.write(in);
+    //test_out.write('X');
+    //test_out.write('L');
     //OutputDev test_out(2);
     //test_out.write('3');
 
@@ -145,16 +146,15 @@ int main() {
     pomnilnik.set_word(1046, 9);*/
 
     load_obj();
-    cout << "POMNILNIK: " << (int) pomnilnik.get_word(107) << "\n";
-    cout << "POMNILNIK: " << (int) pomnilnik.get_word(110) << "\n";
-    cout << "POMNILNIK: " << (int) pomnilnik.get_word(113) << "\n";
+    /*cout << "POMNILNIK: " << (int) pomnilnik.get_byte(49) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_byte(48) << "\n";
     cout << "POMNILNIK: " << (int) pomnilnik.get_word(116) << "\n";
     cout << "POMNILNIK: " << (int) pomnilnik.get_word(119) << "\n";
     cout << "POMNILNIK: " << (int) pomnilnik.get_word(122) << "\n";
     cout << "POMNILNIK: " << (int) pomnilnik.get_word(125) << "\n";
-    cout << "POMNILNIK: " << (int) pomnilnik.get_word(128) << "\n";
+    cout << "POMNILNIK: " << (int) pomnilnik.get_word(128) << "\n";*/
 
-    start();
+    start(0);
     
     return 0;
 }

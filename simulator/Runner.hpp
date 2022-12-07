@@ -13,8 +13,6 @@ void timer_tick() {
 
     //  PRIDEMO DO KONCA PROGRAMA:
         if(old_PC == new_PC) cpu.running = false;
-
-    //  ROCNO USTAVIMO PROGRAM:
     } 
 }
 
@@ -22,12 +20,17 @@ static void stop() {
     cpu.running = false;
 }
 
-static void start() {
+static void start(int k) {
     cpu.running = true;
-    cpu.run(&timer_tick, 0);
+    cpu.run(&timer_tick, 0, k);
 }
 
-static bool is_running() {
-    return cpu.running;
+extern void step(int i, int k) {
+    if(k == i && cpu.running) {
+        stop();
+        while(cin.get() != ' ') cout << "PRESS SPACE FOR EACH STEP\n PRESS ENTER TO CONTINUE\n";
+        start(k);
+    }
 }
+
 
