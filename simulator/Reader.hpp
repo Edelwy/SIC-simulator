@@ -51,7 +51,6 @@ static unsigned char read_byte(ifstream& file) {
     unsigned int ch2 = hex(file.get());
 
     byte = ch1 + ch2;
-    //cout << "BYTE: " << (int) byte << "\n";
     return byte;
 }
 
@@ -65,6 +64,5 @@ static unsigned int read_word(ifstream& file) {
     unsigned int ch6 = hex(file.get());
 
     word = ch1 + ch2 + ch3 + ch4 + ch5 + ch6;
-    //cout << "WORD: " << (int) word << "\n";
     return word;
 }

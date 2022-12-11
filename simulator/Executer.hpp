@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+extern ofstream log;
 
 // **************************** FETCH PHASE: *********************************//
 
@@ -21,25 +22,21 @@ static int get_opcode(unsigned char byte) {
 
 static int get_ni(unsigned char byte) {
     int ni = byte & 0x03;
-    //cout << "NI: " << ni << "\n";
     return ni;
 }
 
 static int get_x(unsigned char byte) {
     int x = (byte & 0x80) >> 7;
-    //cout << "X: " << x << "\n";
     return x;
 }
 
 static int get_bp(unsigned char byte) {
     int bp = (byte & 0x60) >> 5;
-    //cout << "BP: " << bp << "\n";
     return bp;
 }
 
 static int get_e(unsigned char byte) {
     int e = (byte & 0x10) >> 4;
-    //cout << "E: " << e << "\n";
     return e;
 }
 
@@ -92,7 +89,7 @@ static int execute() {
     int opcode = get_opcode(byte1);
     int ni = get_ni(byte1);
 
-    cout << "OPCODE: " << opcode_name(opcode) << "\n";
+    log << "OPCODE: " << opcode_name(opcode) << "\n";
     valid_code(opcode);
 
     if((opcode >= FLOAT && opcode <= NORM) || (opcode >= SIO && opcode <= HIO)) {

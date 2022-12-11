@@ -1,5 +1,6 @@
 #include "Runner.hpp"
 #include "Reader.hpp"
+extern ofstream log;
 
 static bool load_obj() {
     ifstream file = get_file();
@@ -12,12 +13,11 @@ static bool load_obj() {
     int start = read_word(file);
     int size = read_word(file);
 
-    cout << "Start: " << start << " Length: " << size << "\n";
+    log << "PROGRAM: Start: " << start << " Length: " << size << "\n";
     file.get();
     char ch = file.get();
 
     while(ch == 'T') {
-        cout << "\n";
         int addr = read_word(file);
         int length = read_byte(file);
 
@@ -25,7 +25,6 @@ static bool load_obj() {
             if(addr < start || addr >= start + size) return false;
             unsigned char val = read_byte(file);
             pomnilnik.set_byte(addr, val);
-            //cout << "LOAD: " << (int) pomnilnik.get_byte(addr) << "\n";
             addr++;
             length--;
         }

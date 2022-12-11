@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdbool>
 using namespace std;
+extern ofstream log;
 
 // *************** CODE EXECUTION ************** //
 
@@ -17,14 +18,14 @@ bool execute_F1(int opcode) {
         case TIO:       {c.TIO();    break; }
         default: return false;
     }   
-    cout << "\n";
+    log << "\n";
     return true;
 }
 
 bool execute_F2(int opcode, int r1, int r2) {
     F2 c(r1, r2);
-    cout << "R1: " << reg(r1).get_value() << "\n";
-    cout << "R2: " << reg(r2).get_value() << "\n\n";
+    log << "R1: " << reg(r1).get_value() << "\n";
+    log << "R2: " << reg(r2).get_value() << "\n\n";
 
     switch(opcode) {
         case ADDR:      {c.ADDR();   break; }
@@ -93,8 +94,8 @@ bool execute_FSIC34(int opcode, int ni, int UN) {
         } 
     }
 
-    cout << "UN: " << UN << "\n";
-    cout << "operand: " << operand << "\n\n";
+    log << "UN: " << UN << "\n";
+    log << "operand: " << operand << "\n\n";
 
     FSIC34 c(operand);
     switch(opcode) {

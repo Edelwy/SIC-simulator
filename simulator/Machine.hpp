@@ -2,6 +2,7 @@
 #include "Register.hpp"
 #include "Pomnilnik.hpp"
 #include "Opcode.hpp"
+#include <fstream>
 using namespace std;
 
 //REGISTRI:  
@@ -29,6 +30,9 @@ extern bool invalid_code();
 extern string get_opcode_name();
 extern string get_directive_name();
 
+
+//LOG FILE:
+static ofstream log("log.txt");
 
 
 

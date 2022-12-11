@@ -28,7 +28,7 @@ static void start(int k) {
 extern void step(int i, int k) {
     if(k == i && cpu.running) {
         stop();
-        while(cin.get() != ' ') cout << "PRESS SPACE FOR EACH STEP\n PRESS ENTER TO CONTINUE\n";
+        while(cin.get() != '.') cout << "PRESS . FOR EACH STEP\n PRESS ENTER TO CONTINUE\n";
         start(k);
     }
 }
