@@ -1,0 +1,21 @@
+00000            prog  START   0    
+                  
+00000  E3202D          TD      out    
+00003  510053          LDCH    #83    
+00006  DF2027          WD      out    
+00009  510049          LDCH    #73    
+0000C  DF2021          WD      out    
+0000F  510043          LDCH    #67    
+00012  DF201B          WD      out    
+00015  51002F          LDCH    #47    
+00018  DF2015          WD      out    
+0001B  510058          LDCH    #88    
+0001E  DF200F          WD      out    
+00021  510045          LDCH    #69    
+00024  DF2009          WD      out    
+00027  51000A          LDCH    #10    
+0002A  DF2003          WD      out    
+0002D  3F2FFD    halt  J       halt    
+                  . -------------------------.
+00030  AA        out   BYTE    X'AA'    
+00031  02        err   BYTE    2    

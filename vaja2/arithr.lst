@@ -1,0 +1,46 @@
+00000            prog  START   0    
+00000  6F204A          LDS     x    
+00003  77204A          LDT     y    
+00006  4B200F          JSUB    a    
+00009  4B2016          JSUB    b    
+0000C  4B201D          JSUB    c    
+0000F  4B2024          JSUB    d    
+00012  4B2030          JSUB    e    
+00015  3F2FFD    halt  J       halt    
+                  . -------------------------.
+                  
+00018  9054      a     ADDR    T,S    
+0001A  7F2036          STS     sum    
+0001D  9454            SUBR    T,S    
+0001F  4F0000          RSUB        
+                  
+00022  9454      b     SUBR    T,S    
+00024  7F202F          STS     diff    
+00027  9054            ADDR    T,S    
+00029  4F0000          RSUB        
+                  
+0002C  9854      c     MULR    T,S    
+0002E  7F2028          STS     prod    
+00031  9C54            DIVR    T,S    
+00033  4F0000          RSUB        
+                  
+00036  010000    d     LDA     #0    
+00039  9040            ADDR    S,A    
+0003B  9C54            DIVR    T,S    
+0003D  7F201C          STS     quot    
+00040  9854            MULR    T,S    
+00042  4F0000          RSUB        
+                  
+00045  9440      e     SUBR    S,A    
+00047  0F2015          STA     mod    
+0004A  4F0000          RSUB        
+                  
+                  . --------------------------.
+0004D  00000D    x     WORD    13    
+00050  000004    y     WORD    4    
+00053  000000    sum   RESW    1    
+00056  000000    diff  RESW    1    
+00059  000000    prod  RESW    1    
+0005C  000000    quot  RESW    1    
+0005F  000000    mod   RESW    1    
+00062                  END     prog    

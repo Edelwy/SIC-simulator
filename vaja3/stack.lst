@@ -1,0 +1,116 @@
+                  . ---------------------------------------------.
+                  . ----------- TESTIRANJE PROGRAMA -------------.
+                  
+00000            MAIN       START   0    
+00000  4B2054               JSUB    STACKINIT    
+                  
+00003  01004F               LDA     #79    
+00006  0E20C1               STA     @STACKPTR    
+00009  4B205A               JSUB    STACKPUSH    
+                  
+0000C  01004C               LDA     #76    
+0000F  0E20B8               STA     @STACKPTR    
+00012  4B2051               JSUB    STACKPUSH    
+                  
+00015  010045               LDA     #69    
+00018  0E20AF               STA     @STACKPTR    
+0001B  4B2048               JSUB    STACKPUSH    
+                  
+0001E  010048               LDA     #72    
+00021  0E20A6               STA     @STACKPTR    
+00024  4B203F               JSUB    STACKPUSH    
+                  
+00027  4B204E               JSUB    STACKPOP    
+0002A  02209D               LDA     @STACKPTR    
+0002D  4B205A               JSUB    PRINT    
+                  
+00030  4B2045               JSUB    STACKPOP    
+00033  022094               LDA     @STACKPTR    
+00036  4B2051               JSUB    PRINT    
+                  
+00039  4B203C               JSUB    STACKPOP    
+0003C  02208B               LDA     @STACKPTR    
+0003F  4B2048               JSUB    PRINT    
+00042  4B2045               JSUB    PRINT    
+                  
+00045  4B2030               JSUB    STACKPOP    
+00048  02207F               LDA     @STACKPTR    
+0004B  4B203C               JSUB    PRINT    
+                  
+0004E  01000A               LDA     #10    
+00051  4B2036               JSUB    PRINT    
+                  
+                  . LDA		#5
+                  . LDT		#1
+                  . JSUB		FACT
+                  . JSUB		PRINT
+00054  3F2FFD    HALT       J       HALT    
+                  
+                  . ---------------------------------------------.
+                  . ----------- OPERACIJE NA STACKU -------------.
+                  
+00057  0F0CCD    STACKINIT  STA     REG_A    . spravimo vsebino registra A
+0005A  012070               LDA     #STACK    . naložimo naslov kjer se zacne stack
+0005D  0F206A               STA     STACKPTR    . shranimo stackpointer
+00060  030CCD               LDA     REG_A    . nazaj naložimo vsebino A
+00063  4F0000               RSUB        
+                  
+00066  0F0CCD    STACKPUSH  STA     REG_A    . OPOMBA: na sklad pisemo rocno, tu samo povecujamo stackpointer
+00069  03205E               LDA     STACKPTR    
+0006C  190003               ADD     #3    . stackpointer povečamo za eno besedo
+0006F  0F2058               STA     STACKPTR    
+00072  030CCD               LDA     REG_A    
+00075  4F0000               RSUB        
+                  
+00078  0F0CCD    STACKPOP   STA     REG_A    
+0007B  03204C               LDA     STACKPTR    
+0007E  1D0003               SUB     #3    
+00081  0F2046               STA     STACKPTR    
+00084  030CCD               LDA     REG_A    
+00087  4F0000               RSUB        
+                  
+                  . ---------------------------------------------.
+                  . -------------- IZPIS NA EKRAN ---------------.
+                  
+0008A  E30CD1    PRINT      TD      OUT    
+0008D  DF0CD1               WD      OUT    
+00090  4F0000               RSUB        
+                  
+                  . ---------------------------------------------.
+                  . ----------------- FAKULTETA -----------------.
+                  
+00093  290001    ROB        COMP    #1    
+00096  372009               JGT     FACT    
+                  
+00099  4B2FDC               JSUB    STACKPOP    
+0009C  02202B               LDA     @STACKPTR    
+0009F  4B2014               JSUB    RETURN    
+                  
+000A2  162025    FACT       STL     @STACKPTR    
+000A5  4B2FBE               JSUB    STACKPUSH    
+                  
+000A8  9805                 MULR    A,T    
+000AA  1D0001               SUB     #1    
+000AD  86201A               STT     @STACKPTR    
+000B0  4B2FB3               JSUB    STACKPUSH    
+000B3  4B2FDD               JSUB    ROB    
+                  
+000B6  4B2FBF    RETURN     JSUB    STACKPOP    
+000B9  6E200E               LDS     @STACKPTR    
+                  
+000BC  4B2FB9               JSUB    STACKPOP    
+000BF  762008               LDT     @STACKPTR    
+000C2  090000               LDL     #0    
+000C5  9042                 ADDR    S,L    
+000C7  4F0000               RSUB        
+                  
+                  . ---------------------------------------------.
+                  . ------ PROSTOR REZERVIRAN ZA SKLAD ----------.
+                  
+000CA  000000    STACKPTR   RESW    1    
+000CD  00....00  STACK      RESW    1024    
+00CCD  000000    REG_A      RESW    1    
+                  
+00CD0  00        IN         BYTE    X'00'    
+00CD1  01        OUT        BYTE    X'01'    
+00CD2  02        ERR        BYTE    X'02'    

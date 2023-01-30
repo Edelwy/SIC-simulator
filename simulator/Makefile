@@ -2,7 +2,7 @@
 CC = g++
 CFLAGS = -Wall -g -pedantic
 LIBS = -lm
-TARGET = test.elf
+TARGET = simulator.elf
 
 OBJECTS = \
 	Machine.hpp.gch \

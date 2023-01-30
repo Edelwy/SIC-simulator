@@ -1,0 +1,289 @@
+PROGRAM: Start: 0 Length: 49
+OPCODE: JSUB
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 104
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 101
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 108
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 108
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 111
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 33
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: WD
+UN: 10
+operand: 10
+
+OPCODE: RSUB
+UN: 0
+operand: 0
+
+OPCODE: J
+UN: 3
+operand: 3
+
+REGISTER A: 35
+REGISTER X: 0
+REGISTER S: 0
+REGISTER L: 3
+REGISTER B: 0
+REGISTER T: 0
+REGISTER SW: 64
+REGISTER PC: 3

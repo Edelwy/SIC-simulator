@@ -1,0 +1,28 @@
+00000            prog  START   0    
+00000  4B2003          JSUB    beri    
+00003  3F2FFD    halt  J       halt    
+                  
+                  . -------------------------.
+00006  E32024    beri  TD      in    
+00009  DB2021          RD      in    
+0000C  0F2021          STA     char    
+0000F  290023          COMP    #35    
+00012  332003          JEQ     end    
+00015  3F2009          J       pisi    
+                  
+00018  E32013    end   TD      out    
+0001B  DD000A          WD      #10    
+0001E  4F0000          RSUB        
+                  
+                  . -------------------------.
+00021  E3200A    pisi  TD      out    
+00024  032009          LDA     char    
+00027  DF2004          WD      out    
+0002A  3F2FD9          J       beri    
+                  
+                  . -------------------------.
+0002D  00        in    BYTE    X'00'    
+0002E  01        out   BYTE    X'01'    
+0002F  02        err   BYTE    X'02'    
+                  
+00030  00        char  RESB    1    . spravimo znak :)

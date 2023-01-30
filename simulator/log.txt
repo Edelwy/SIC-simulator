@@ -223,6 +223,46 @@ OPCODE: JEQ
 UN: 24
 operand: 24
 
+OPCODE: J
+UN: 33
+operand: 33
+
+OPCODE: TD
+UN: 46
+operand: 1
+
+OPCODE: LDA
+UN: 48
+operand: 33
+
+OPCODE: WD
+UN: 46
+operand: 1
+
+OPCODE: J
+UN: 6
+operand: 6
+
+OPCODE: TD
+UN: 45
+operand: 0
+
+OPCODE: RD
+UN: 45
+operand: 0
+
+OPCODE: STA
+UN: 48
+operand: 48
+
+OPCODE: COMP
+UN: 35
+operand: 35
+
+OPCODE: JEQ
+UN: 24
+operand: 24
+
 OPCODE: TD
 UN: 46
 operand: 1

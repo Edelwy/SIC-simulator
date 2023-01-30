@@ -1,0 +1,34 @@
+00000            prog  START   0    
+00000  6F202C          LDS     x    
+00003  77202C          LDT     y    
+                  
+00006  9054      a     ADDR    T,S    
+00008  7D202A          STS     #sum    
+0000B  9454            SUBR    T,S    
+                  
+0000D  9454      b     SUBR    T,S    
+0000F  7D2026          STS     #diff    
+00012  9054            ADDR    T,S    
+                  
+00014  9854      c     MULR    T,S    
+00016  7D2022          STS     #prod    
+00019  9C54            DIVR    T,S    
+                  
+0001B  010000    d     LDA     #0    
+0001E  9040            ADDR    S,A    
+00020  9C54            DIVR    T,S    
+00022  7D2019          STS     #quot    
+00025  9854            MULR    T,S    
+                  
+00027  9440      e     SUBR    S,A    
+00029  0D2015          STA     #mod    
+0002C  3D2FFD    halt  J       #halt    
+                  
+0002F  00000D    x     WORD    13    
+00032  000004    y     WORD    4    
+00035  000000    sum   RESW    1    
+00038  000000    diff  RESW    1    
+0003B  000000    prod  RESW    1    
+0003E  000000    quot  RESW    1    
+00041  000000    mod   RESW    1    
+00044                  END     prog    

@@ -1,0 +1,34 @@
+***** Section <default> *****
+Stats: size=3283  blocks=3283  symbols=15  literals=0  relocations=8
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  00CD3    68    4    3
+Symbols
+    name           hex       dec  scope     kind      type      description
+    ERR         000CD2      3282  local     relative  data      label
+    FACT        0000A2       162  local     relative  code      label
+    HALT        000054        84  local     relative  code      label
+    IN          000CD0      3280  local     relative  data      label
+    MAIN        000000         0  exported  relative  code      label
+    OUT         000CD1      3281  local     relative  data      label
+    PRINT       00008A       138  local     relative  code      label
+    REG_A       000CCD      3277  local     relative  data      label
+    RETURN      0000B6       182  local     relative  code      label
+    ROB         000093       147  local     relative  code      label
+    STACK       0000CD       205  local     relative  data      label
+    STACKINIT   000057        87  local     relative  code      label
+    STACKPOP    000078       120  local     relative  code      label
+    STACKPTR    0000CA       202  local     relative  data      label
+    STACKPUSH   000066       102  local     relative  code      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol
+    00058        3
+    00061        3
+    00067        3
+    00073        3
+    00079        3
+    00085        3
+    0008B        3
+    0008E        3
